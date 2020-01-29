@@ -1,0 +1,23 @@
+{
+  "name": "github-pdf-generator",
+  "version": "1.0.0",
+  "description": "using user input, generates a pdf file of a github profile",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianwatson115/09-Homework.git"
+  },
+  "author": "Ian Watson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ianwatson115/09-Homework/issues"
+  },
+  "homepage": "https://github.com/ianwatson115/09-Homework#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "inquirer": "^7.0.4"
+  }
+}
