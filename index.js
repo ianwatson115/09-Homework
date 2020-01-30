@@ -1,16 +1,16 @@
 const generate = require("./generateHTML");
+const inquirer = require("inquirer");
+const axios = require("axios");
+
 const questions = [
   "Please enter your Github Username",
-  ""
+  
 ];
 
-fetch('https://jsonplaceholder.typicode.com/posts').then(function (response) {
-	// The API call was successful!
-	console.log('success!', response);
-}).catch(function (err) {
-	// There was an error
-	console.warn('Something went wrong.', err);
-});
+axios.get("https://api.github.com")
+	.then((response) => {
+		console.log(response.data);
+	})
 
 function writeToFile(fileName, data) {
  
