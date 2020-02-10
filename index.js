@@ -1,10 +1,11 @@
 const generate = require("./generateHTML");
 const fs = require("fs");
-const convertFactory = require("electron-html-to");
+var convertFactory = require("electron-html-to");
 const inquirer = require("inquirer");
 const axios = require("axios");
+var answerData;
 
-let conversion = convertFactory({
+var conversion = convertFactory({
     converterPath: convertFactory.converters.PDF
 });
 
@@ -49,17 +50,25 @@ function profileSorter(data) {
 		stars: star.length
 	}
 	console.log(user);
-	// writeToPDF(user);
+	writeToPDF(user);
 }
 
 function writeToPDF (response) {
-	
+	const html = generate(answerData, response);
+	conversion({html: html}, function(err, result) {
+		if (err) {
+		  return console.error(err);
+		}
+		result.stream.pipe(fs.createWriteStream(__dirname + '/resume.pdf'));
+		conversion.kill();
+	});
 }
 
 function init() {
 	inquirer.prompt(questions).then(answers => {
-		const answerData = answers;
+		answerData = answers;
 		getUser(answers);
+
 	})
 }
 init();
